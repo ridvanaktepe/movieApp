@@ -1,3 +1,21 @@
 <h2>Movies Component HTML</h2>
-<movie></movie>
-<movie></movie>
+
+<hr>
+
+<movie-detail [movie]="selectedMovie"></movie-detail>
+
+<hr>
+
+<div class="card">
+    <div class="card-header">
+        <p>{{title}}</p>
+    </div>
+
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let movie of movies" class="list-group-item" (click)="onSelect(movie)"
+            [class.active]="movie===selectedMovie">
+            <span class="badge bg-primary">{{movie.id}}</span> {{movie.name}}
+            <span class="close "> x</span>
+        </li>
+    </ul>
+</div>
