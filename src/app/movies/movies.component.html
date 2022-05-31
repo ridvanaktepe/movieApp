@@ -2,20 +2,46 @@
 
 <hr>
 
-<movie-detail [movie]="selectedMovie"></movie-detail>
-
-<hr>
-
 <div class="card">
     <div class="card-header">
         <p>{{title}}</p>
     </div>
 
     <ul class="list-group list-group-flush">
-        <li *ngFor="let movie of movies" class="list-group-item" (click)="onSelect(movie)"
-            [class.active]="movie===selectedMovie">
+        <li *ngFor="let movie of movies" class="list-group-item" routerLink="/detail/{{movie.id}}"
+            (click)="onSelect(movie)">
             <span class="badge bg-primary">{{movie.id}}</span> {{movie.name}}
-            <span class="close "> x</span>
+            <button (click)="delete(movie)" type="button" class="btn-close btn-sm" aria-label="Close" style="float: right;"></button>
         </li>
     </ul>
+</div>
+
+<div class="card my-2">
+    <div class="card-header">
+        Add Movie
+    </div>
+    <div class="card-body">
+
+        <div class="card-body">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input #name class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input #imageUrl class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea #description class="form-control"></textarea>
+            </div>
+
+            <button (click)="add(name.value,imageUrl.value,description.value); name.value='';
+            imageUrl.value=''; description.value=''; " 
+            class="btn btn-primary btn-sm my-2" type="button">Save</button>
+
+        </div>
+    </div>
 </div>
